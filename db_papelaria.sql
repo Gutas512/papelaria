@@ -28,5 +28,14 @@ CREATE TABLE Estoque(
     est_saida DATE NOT NULL
 );
 
+CREATE TABLE Vendas (
+    id_venda INT AUTO_INCREMENT PRIMARY KEY,
+    id_livro INT NOT NULL,
+    quantidade_vendida INT NOT NULL,
+    data_venda DATE NOT NULL,
+    valor_total FLOAT NOT NULL,
+    CONSTRAINT fk_id_livros FOREIGN KEY (id_livro) REFERENCES Livros(id_livro)
+);
+
 ALTER TABLE Estoque
 ADD CONSTRAINT fk_id_livro FOREIGN KEY (id_livro) REFERENCES Livros(id_livro);
