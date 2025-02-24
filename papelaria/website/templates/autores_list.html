@@ -1,0 +1,47 @@
+<!-- website/templates/website/autores_list.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Autores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Lista de Autores</h1>
+        <a href="{% url 'autores_create' %}" class="btn btn-success mb-3">Adicionar Autor</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Nacionalidade</th>
+                    <th>Biografia</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- website/templates/website/autores_list.html -->
+{% for autor in autores %}
+    <tr>
+        <td>{{ autor.id_autores }}</td>
+        <td>{{ autor.aut_nome }}</td>
+        <td>{{ autor.aut_nacionalidade }}</td>
+        <td>{{ autor.aut_biografia }}</td>
+        <td>
+            <a href="{% url 'autores_update' autor.id_autores %}" class="btn btn-primary btn-sm">Editar</a>
+            <a href="{% url 'autores_delete' autor.id_autores %}" class="btn btn-danger btn-sm">Excluir</a>
+        </td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="5" class="text-center">Nenhum autor cadastrado.</td>
+    </tr>
+{% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'index' %}" class="btn btn-secondary">Voltar ao Início</a>
+    </div>
+</body>
+</html>
