@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Livraria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .menu {
+            margin-top: 20px;
+        }
+        .menu a {
+            display: block;
+            padding: 10px;
+            margin: 10px;
+            background-color: #3bd9b9;
+            color: white;
+            text-decoration: none;
+            width: 200px;
+            margin: 10px auto;
+            border-radius: 5px;
+        }
+        .menu a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bem-vindo ao Sistema de Gerenciamento de Livraria</h1>
+    <div class="menu">
+        <a href="{% url 'livros_list' %}">Gerenciar Livros</a>
+        <a href="{% url 'autores_list' %}">Gerenciar Autores</a>
+        <a href="{% url 'vendas_list' %}">Gerenciar Vendas</a>
+        <a href="{% url 'estoque_list' %}">Gerenciar Estoque</a>
+    </div>
+</body>
+</html>
