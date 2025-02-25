@@ -11,7 +11,8 @@ CREATE TABLE Livros(
     liv_ano__publicacao INT NOT NULL,
     liv_preco_da_capa FLOAT NOT NULL,
     liv_categoria VARCHAR(50) NOT NULL,
-    liv_quant INT NOT NULL
+    liv_quant INT NOT NULL,
+    id_autores INT NOT NULL
     
 );
 
@@ -23,6 +24,7 @@ CREATE TABLE Autores(
 );
 
 CREATE TABLE Estoque(
+	id_estoque INT AUTO_INCREMENT PRIMARY KEY,
 	id_livro INT NOT NULL,
     est_entrada DATE NOT NULL,
     est_saida DATE NOT NULL
@@ -39,3 +41,6 @@ CREATE TABLE Vendas (
 
 ALTER TABLE Estoque
 ADD CONSTRAINT fk_id_livro FOREIGN KEY (id_livro) REFERENCES Livros(id_livro);
+
+ALTER TABLE Livros
+ADD CONSTRAINT fk_id_autores FOREIGN KEY (id_autores) REFERENCES Autores(id_autores);
