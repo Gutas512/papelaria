@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Lista de Autores</h2>
+<a href="{% url 'autor_create' %}" class="btn">Adicionar Novo Autor</a>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 2.5em;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        text-decoration: none;
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 10px;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #2980b9;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #3498db;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #ecf0f1;
+    }
+
+    td a {
+        text-decoration: none;
+        color: #3498db;
+        margin-right: 15px;
+        transition: color 0.3s ease;
+    }
+
+    td a:hover {
+        color: #2980b9;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Nacionalidade</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for autor in autores %}
+        <tr>
+            <td>{{ autor.nome_completo }}</td>
+            <td>{{ autor.nacionalidade }}</td>
+            <td>
+                <a href="{% url 'autor_detail' autor.id %}">Ver</a> |
+                <a href="{% url 'autor_update' autor.id %}">Editar</a> |
+                <a href="{% url 'autor_delete' autor.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

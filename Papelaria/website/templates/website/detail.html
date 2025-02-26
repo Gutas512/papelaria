@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Detalhes do Movimento de Estoque</h1>
+    <p><strong>Livro:</strong> {{ movimento.livro.titulo }}</p>
+    <p><strong>Tipo de Movimento:</strong> {{ movimento.tipo_movimento }}</p>
+    <p><strong>Quantidade:</strong> {{ movimento.quantidade }}</p>
+    <p><strong>Data do Movimento:</strong> {{ movimento.data_movimento }}</p>
+    <a href="{% url 'estoque_list' %}">Voltar à lista</a>
+{% endblock %}
+

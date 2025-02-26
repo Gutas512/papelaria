@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Bem-vindo à Papelaria!</h1>
+    <p>Estamos felizes em te ver! Explore nossa página e descubra mais sobre os autores e nossas coleções.</p>
+    
+    <div class="intro">
+        <h2>O que fazemos?</h2>
+        <p>Somos especializados em coleções literárias e ajudamos você a conhecer mais sobre os grandes autores da história. Navegue em nosso site para ver nossa lista de autores, adicionar novos livros e muito mais.</p>
+    </div>
+
+    <div class="links">
+        <a href="{% url 'autor_list' %}" class="btn">Ver Lista de Autores</a>
+        <a href="{% url 'livro_list' %}" class="btn">Ver Listra de Livros</a>
+        <a href="/estoque/" class="btn">Estoque</a>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .intro {
+            background-color: #ecf0f1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro h2 {
+            color: #3498db;
+        }
+
+        .links {
+            margin-top: 30px;
+        }
+
+        .btn {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+{% endblock %}

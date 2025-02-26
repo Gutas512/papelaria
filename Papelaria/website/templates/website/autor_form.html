@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{% if form.instance.pk %}Editar Autor{% else %}Adicionar Novo Autor{% endif %}</h2>
+
+<!-- Estilos adicionados diretamente aqui -->
+<style>
+    /* Estilo básico para o conteúdo */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    form input, form select, form textarea {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    form button {
+        padding: 10px;
+        background-color: #2c3e50;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+        background-color: #34495e;
+    }
+
+    /* Link de Cancelar */
+    a {
+        text-decoration: none;
+        color: #2c3e50;
+        font-size: 16px;
+        margin-top: 20px;
+        display: inline-block;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+</form>
+<a href="{% url 'autor_list' %}">Cancelar</a>
+
+{% endblock %}

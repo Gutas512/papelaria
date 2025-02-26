@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Papelaria{% endblock %}</title>
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Cabeçalho com logo e navegação -->
+    <header>
+        <div class="logo">
+            <a>Papelaria</a>
+        </div>
+        <nav>
+                <li><a href="/">Home</a></li>
+                <li><a href="/autores/">Autores</a></li>
+                <li><a href="/sobre/">Sobre</a></li>
+                <li><a href="/contato/">Contato</a></li>
+
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <div class="container">
+            {% block content %}
+            <!-- O conteúdo específico de cada página será inserido aqui -->
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Papelaria | Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Carregando o JavaScript -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
