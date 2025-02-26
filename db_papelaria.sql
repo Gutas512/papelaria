@@ -1,46 +1,42 @@
-CREATE DATABASE papelaria;
+CREATE DATABASE Papelaria;
 
-USE papelaria;
+USE Papelaria;
 
-CREATE TABLE Livros(
-	id_livro INT AUTO_INCREMENT PRIMARY KEY,
-    liv_titulo VARCHAR(50) NOT NULL,
-    liv_ISBN INT NOT NULL,
-    liv_edicao VARCHAR(50) NOT NULL,
-    liv_editora VARCHAR(50) NOT NULL,
-    liv_ano__publicacao INT NOT NULL,
-    liv_preco_da_capa FLOAT NOT NULL,
-    liv_categoria VARCHAR(50) NOT NULL,
-    liv_quant INT NOT NULL,
-    id_autores INT NOT NULL
-    
+-- Tabela de Autores
+CREATE TABLE autores (
+    id_autor INT AUTO_INCREMENT PRIMARY KEY,
+    nome_completo VARCHAR(255) NOT NULL,
+    nacionalidade VARCHAR(100),
+    biografia TEXT
 );
 
-CREATE TABLE Autores(
-	id_autores INT AUTO_INCREMENT PRIMARY KEY,
-    aut_nome VARCHAR(75),
-    aut_nacionalidade VARCHAR(20),
-    aut_biografia VARCHAR(50)
+-- Tabela de Livros
+CREATE TABLE livros (
+    id_livro INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    isbn VARCHAR(20) UNIQUE NOT NULL,
+    edicao VARCHAR(50),
+    editora VARCHAR(255),
+    ano_publicacao YEAR,
+    preco_capa DECIMAL(10,2),
+    categoria VARCHAR(100)
 );
 
-CREATE TABLE Estoque(
-	id_estoque INT AUTO_INCREMENT PRIMARY KEY,
-	id_livro INT NOT NULL,
-    est_entrada DATE NOT NULL,
-    est_saida DATE NOT NULL
+-- Tabela de Relacionamento entre Livros e Autores (M:N)
+CREATE TABLE livro_autor (
+    id_livro INT,
+    id_autor INT,
+    PRIMARY KEY (id_livro, id_autor),
+    FOREIGN KEY (id_livro) REFERENCES livros(id_livro) ON DELETE CASCADE,
+    FOREIGN KEY (id_autor) REFERENCES autores(id_autor) ON DELETE CASCADE
 );
 
-CREATE TABLE Vendas (
-    id_venda INT AUTO_INCREMENT PRIMARY KEY,
+-- Tabela de Controle de Estoque
+CREATE TABLE estoque (
+    id_estoque INT AUTO_INCREMENT PRIMARY KEY,
     id_livro INT NOT NULL,
-    quantidade_vendida INT NOT NULL,
-    data_venda DATE NOT NULL,
-    valor_total FLOAT NOT NULL,
-    CONSTRAINT fk_id_livros FOREIGN KEY (id_livro) REFERENCES Livros(id_livro)
+    tipo_movimento ENUM('entrada', 'saida') NOT NULL,
+    quantidade INT NOT NULL DEFAULT 0,
+    data_movimento DATE NOT NULL,
+    FOREIGN KEY (id_livro) REFERENCES livros(id_livro) ON DELETE CASCADE
 );
-
-ALTER TABLE Estoque
-ADD CONSTRAINT fk_id_livro FOREIGN KEY (id_livro) REFERENCES Livros(id_livro);
-
-ALTER TABLE Livros
-ADD CONSTRAINT fk_id_autores FOREIGN KEY (id_autores) REFERENCES Autores(id_autores);
